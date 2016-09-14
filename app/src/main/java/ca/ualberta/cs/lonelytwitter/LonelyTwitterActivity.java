@@ -37,6 +37,7 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
+
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 
@@ -53,6 +54,7 @@ public class LonelyTwitterActivity extends Activity {
 				String test = newTweet.getMessage();
 
 				ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+
 				tweetList.add(newTweet);
 				tweetList.add(newestImportantTweet);
 
