@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -57,7 +58,17 @@ public class LonelyTwitterActivity extends Activity {
 
 				saveInFile();
 			}
+
 		});
+
+        Button clearButton = (Button)findViewById(R.id.clear);
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+                // call functions to clear screen and then data
+                clearEverything();
+            }
+        });
 	}
 
 	@Override
@@ -111,4 +122,14 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
+
+    private void clearEverything() {
+        adapter.clear();
+        tweetList.clear();
+        adapter.notifyDataSetChanged();
+        saveInFile();
+        bodyText.setText("");
+        bodyText.clearAnimation();
+    }
+
 }
