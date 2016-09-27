@@ -41,4 +41,15 @@ public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitt
         assertEquals(a, list.getTweet(0));
         assertEquals(b, list.getTweet(1));
     }
+
+    public void testDeleteTweet() {
+        TweetList list = new TweetList();
+
+        Tweet a = new NormalTweet("Hello");
+        list.add(a);
+        assertTrue(list.hasTweet(a));
+
+        list.delete(a);
+        assertFalse(list.hasTweet(a));
+    }
 }
