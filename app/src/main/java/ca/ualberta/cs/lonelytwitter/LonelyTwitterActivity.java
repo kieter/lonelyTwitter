@@ -1,3 +1,11 @@
+/*
+Copyright (c) 2016 Team 20, CMPUT301, University of Alberta - All Rights Reserved.
+You may use, distribute, and copy all or parts of this code uner the terms of conditions of
+University of Alberta and the Code of Student Behaviour.
+You can find the ocpy of the licence at http://www.github.com/Team20/...
+For further information please contact...
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -25,14 +33,44 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * This is the main view class of LonelyTwitter project. <p>It handles all user
+ * interactions as well as file manipulations </p>
+ * <pre> All the files are stored in the format of json </pre>
+ * <code> pseudo code sample:
+ * open some fil...attach some text... close the file.</code>
+ *
+ * @since 1.0
+ * @see NormalTweet
+ * @author Kieter
+ */
 public class LonelyTwitterActivity extends Activity {
 
+    /**
+     * This is the file name that is being saved / loaded and contains all the tweets in json
+     * @see #loadFromFile()
+     * @see #saveInFile()
+     */
 	private static final String FILENAME = "file.sav";
+
+    /**
+     * This is the text of the body
+     */
 	private EditText bodyText;
+
+    /**
+     * This ListView displays previous tweets
+     */
 	private ListView oldTweetsList;
 
+    /**
+     * tweetList contaiins all of the Tweets
+     */
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 
+    /**
+     * adapter adsapts the tweetList to the oldTweetsList ListView
+     */
 	private ArrayAdapter<Tweet> adapter;
 
 	/** Called when the activity is first created. */
@@ -81,6 +119,11 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+    /**
+     * This methods loads the tweets from FILENAME and...
+     * @throws FileNotFoundException
+     * @exception FileNotFoundException
+     */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
@@ -101,7 +144,12 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
-	
+
+    /**
+     * This methods save tweets to FILENAME
+     * @exception FileNotFoundException
+     * @exception IOException
+     */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
@@ -123,6 +171,9 @@ public class LonelyTwitterActivity extends Activity {
 		}
 	}
 
+    /**
+     * This method clears the screen and erases the file.
+     */
     private void clearEverything() {
         adapter.clear();
         tweetList.clear();

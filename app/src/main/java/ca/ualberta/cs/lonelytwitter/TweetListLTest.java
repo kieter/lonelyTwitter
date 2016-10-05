@@ -9,14 +9,17 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- * Created by kiete on 9/27/2016.
+ * TweetListTest tests the methods of TweetList
+ * @see TweetList
  */
-
 public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitterActivity> {
     public TweetListLTest() {
         super(LonelyTwitterActivity.class);
     }
 
+    /**
+     * testAddTweet tests adding a tweet
+     */
     public void testAddTweet() {
         TweetList list = new TweetList();
         Tweet tweet = new NormalTweet("Hello!!!");
@@ -32,6 +35,9 @@ public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitt
         assertTrue(list.hasTweet(tweet));
     }
 
+    /**
+     * testHasTweet tests hasTweet
+     */
     public void testHasTweet() {
         TweetList list = new TweetList();
         Tweet tweet = new NormalTweet("Hello!!!");
@@ -41,6 +47,9 @@ public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitt
         assertTrue(list.hasTweet(tweet));
     }
 
+    /**
+     * testGetTweet tests getTweet
+     */
     public void testGetTweet() {
         TweetList list = new TweetList();
 
@@ -54,6 +63,9 @@ public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitt
         assertEquals(b, list.getTweet(1));
     }
 
+    /**
+     * testDeleteTweet tests deleteTweet
+     */
     public void testDeleteTweet() {
         TweetList list = new TweetList();
 
@@ -65,6 +77,9 @@ public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitt
         assertFalse(list.hasTweet(a));
     }
 
+    /**
+     * testGetTweets tests getTweet
+     */
     public void testGetTweets() {
         TweetList list = new TweetList();
         TweetList rightOrder = new TweetList();
@@ -92,6 +107,9 @@ public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitt
         assertTrue(messageChrono.equals(messageRight));
     }
 
+    /**
+     * testRemoveTweet tests removeTweet
+     */
     public void testRemoveTweet() {
         TweetList list = new TweetList();
 
@@ -103,6 +121,9 @@ public class TweetListLTest extends ActivityInstrumentationTestCase2<LonelyTwitt
         assertFalse(list.hasTweet(a));
     }
 
+    /**
+     * testGetCount tests getCount
+     */
     public void testGetCount() {
         TweetList list = new TweetList();
         Tweet a = new NormalTweet("Hello");
