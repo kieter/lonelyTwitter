@@ -22,8 +22,10 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,6 +47,7 @@ import com.google.gson.reflect.TypeToken;
  * @author Kieter
  */
 public class LonelyTwitterActivity extends Activity {
+    public static Tweet selectedTweet;
 
     /**
      * This is the file name that is being saved / loaded and contains all the tweets in json
@@ -73,9 +76,14 @@ public class LonelyTwitterActivity extends Activity {
      */
 	private ArrayAdapter<Tweet> adapter;
 
+	public ListView getOldTweetsList() {
+		return oldTweetsList;
+	}
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
@@ -107,7 +115,17 @@ public class LonelyTwitterActivity extends Activity {
                 clearEverything();
             }
         });
+
+        oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //selectedTweet = (Tweet) oldTweetsList.getItemAtPosition(position);
+                Intent intent = new Intent(LonelyTwitterActivity.this, EditTweetActivity.class);
+                intent.putExtra("tweet", ((Tweet)oldTweetsList.getItemAtPosition(position)).getMessage());
+                startActivity(intent);
+            }
+        });
 	}
+
 
 	@Override
 	protected void onStart() {
